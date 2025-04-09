@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Marks Input</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+    }
+    
+    h3 {
+        color: #2c3e50;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    
+    li {
+        font-size: 18px;
+        margin-bottom: 5px;
+        transition: transform 0.3s ease;
+    }
+    
+    h3, p {
+        border: 2px solid #2c3e50;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #ecf0f1;
+        width: 80%;
+        max-width: 600px;
+        margin: 20px auto;
+    }
+    
+    p {
+        background-color: #f9fafb;
+        color: #16a085;
+    }
+    
+    p.grade {
+        background-color: #eafaf1;
+        color: #27ae60;
+        font-weight: bold;
+    }
+    
+    h3:hover, p:hover {
+        background-color: #dfe6e9;
+        color: #2c3e50;
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+    
+    li:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }    
+</style>
+<body>
+    <script>
+        // Prompt the user for the number of courses
+        let numOfCourses = prompt("How many courses did you finish?", "0");
+
+        /*
+        JS Built-in functions:
+        - alert() => pop-up message
+        - prompt() => pop-up message with input field
+        - confirm() => pop-up message with yes/no buttons
+        */
+
+        // Convert input to integer
+        numOfCourses = parseInt(numOfCourses);
+
+        // Validate the input
+        if (isNaN(numOfCourses) || numOfCourses <= 0) {
+            // Printing invalid input message and ending the program
+            document.write("<p>Invalid Input!</p>");
+            document.write("<p>The end!</p>");
+        } else {
+            // For Valid input
+            // Declare an empty array for course marks and a variable to hold the total
+            let courseMarks = []; // declare an empty array
+            let total = 0;
+
+            //Initializing the loop counter
+            let i = 1;
+
+            // Loop to populate the array with marks and calculate the total
+            while (i <= numOfCourses) {
+                // Nested functions: prompt() -> convert to number -> push to array
+                let mark = parseFloat(prompt("Enter your marks for course " + i + " (out of 100):"));
+                courseMarks.push(mark); // Add the mark to the array
+                total += mark;  // Add the mark to the total
+
+                // Increment the counter
+                i++;
+            }
+
+            // Calculation for the average
+            let average = total / numOfCourses;
+
+            // Round the average to 2 decimal places
+            average = average.toFixed(2); // The `toFixed(2)` method rounds the number to 2 decimal places and returns it as a string.
+
+            // Displays the average and grade based on conditions
+            document.write("<h3>Your final average is: " + average + "</h3>");
+
+            if (average >= 90 && average <= 100) {
+                document.write("<p>Your grade is A+</p>");
+            } else if (average >= 80 && average < 90) {
+                document.write("<p>Your grade is B</p>");
+            } else if (average >= 70 && average < 80) {
+                document.write("<p>Your grade is C</p>");
+            } else if (average >= 60 && average < 70) {
+                document.write("<p>Your grade is D</p>");
+            } else if (average < 60) {
+                document.write("<p>Your grade is F</p>");
+            } else {
+                document.write("<p>Sorry, all the marks have to be from minimum 0 to maximum 100!</p>");
+            }
+        }
+    </script>
+</body>
+</html>
